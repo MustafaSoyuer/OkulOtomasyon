@@ -42,6 +42,24 @@ public class EbeveynController {
                         .soyad("TAS")
                         .telefon("0 555 777 7777")
                 .build());
+        ebeveynService.save(Ebeveyn.builder()
+                .ad("Canan")
+                .adres("Izmir")
+                .soyad("KAYI")
+                .telefon("0 555 777 7778")
+                .build());
+        ebeveynService.save(Ebeveyn.builder()
+                .ad("Bulent")
+                .adres("Bursa")
+                .soyad("BAKI")
+                .telefon("0 555 777 7779")
+                .build());
+        ebeveynService.save(Ebeveyn.builder()
+                .ad("Tuna")
+                .adres("Ankara")
+                .soyad("TEK")
+                .telefon("0 555 777 7776")
+                .build());
     }
 
     /**
@@ -52,4 +70,37 @@ public class EbeveynController {
     public List<Ebeveyn> findAll(){
         return ebeveynService.findAll();
     }
+
+    /**
+     * http://localhost:8080/ebeveyn/get-all-by-adres
+     * GET isteklerinde bilgi transferi isteğin header kısmında taşınır.
+     * yani URL adresine bilgi ekleyerek göndermeniz gereklidir. bu işlem
+     * end-point in sonuna ? ekleyerek yapılır. ? den sonra gönderilmek istenilen
+     * parametrenin adı ? değer şeklinde yazılır.
+     * @param adres
+     * @return
+     */
+    @GetMapping("/get-all-by-adres?adres=Ankara")
+    public List<Ebeveyn> findAllByAdres(String adres){
+        return ebeveynService.findAll()
+                .stream().filter(x->x.getAdres().contains(adres))
+                .toList();
+    }
+
+    /**
+     * GET isteklerinde bilgi eklemesi yapılırken, header içinde birden fazla bilgi taşıyabiliriz.
+     * Bu bilgileri eklemek için ifadeler arasına & işareti eklenir
+     * http://localhost:8080/ebeveyn/get-all-by-adres-and-ad?adres=a&ad=a
+     * @param adres
+     * @param ad
+     * @return
+     */
+    @GetMapping("/get-all-by-adres-and-ad")
+    public List<Ebeveyn> findAllByAdresAndAd(String adres, String ad){
+        return ebeveynService.findAll()
+                .stream().filter(x->x.getAdres().contains(adres) && x.getAd().contains(ad))
+                .toList();
+    }
+
+
 }
