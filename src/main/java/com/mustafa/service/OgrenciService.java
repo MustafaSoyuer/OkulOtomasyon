@@ -1,5 +1,6 @@
 package com.mustafa.service;
 
+import com.mustafa.entity.BaseEntity;
 import com.mustafa.entity.Ogrenci;
 import com.mustafa.entity.enums.State;
 import com.mustafa.repository.OgrenciRepository;
@@ -32,9 +33,13 @@ public class OgrenciService {
 //    }
 
     public void save(Ogrenci ogrenci){
-        ogrenci.getBaseEntity().setState(State.AKTIF);
-        ogrenci.getBaseEntity().setCreateAt(System.currentTimeMillis());
-        ogrenci.getBaseEntity().setUpdateAt(System.currentTimeMillis());
+        ogrenci.setBaseEntity(
+                BaseEntity.builder()
+                        .state(State.AKTIF)
+                        .createAt(System.currentTimeMillis())
+                        .updateAt(System.currentTimeMillis())
+                        .build()
+        );
         ogrenciRepository.save(ogrenci);
     }
 

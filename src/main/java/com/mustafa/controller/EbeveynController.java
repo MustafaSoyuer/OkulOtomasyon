@@ -24,6 +24,16 @@ public class EbeveynController {
      *  değişim gösterir. Asıl olan class a erişim ve içindeki methodları tetiklemek için kullanılan parametrelerdir.
      *
      *
+     *          DİKKAT!!!!!!!
+     *  GET isteği , bir url adresinden bilgi almak için kullanılır.
+     *  tüm browser lar GET isteği ile çalışor. amaçları iletilen URL adresindeki
+     *  bilgiyi çekmektir. Eğer gelen data bir HTML içeriği ise onu web sayfası olarak yorumlar ve açar.
+     *
+     *  --  GET isteği, herkese açık olan sayfalarınnı ve bilgilerinizi şletmek için kullanılır.
+     *  --  gizli, oturum açma bilgilerini içeren istekleri ya da önemli bilgileri taşımak için
+     *  kullanılmaz, veriler HEADER içinde taşındığı için güvenli değildir. Ağı(network) dinleyen
+     *  herhangi biri bilgileri kolaylıkla okuyabilir.
+     *
      */
 
     /**
@@ -80,12 +90,13 @@ public class EbeveynController {
      * @param adres
      * @return
      */
-    @GetMapping("/get-all-by-adres?adres=Ankara")
+    @GetMapping("/get-all-by-adres")
     public List<Ebeveyn> findAllByAdres(String adres){
         return ebeveynService.findAll()
                 .stream().filter(x->x.getAdres().contains(adres))
                 .toList();
     }
+
 
     /**
      * GET isteklerinde bilgi eklemesi yapılırken, header içinde birden fazla bilgi taşıyabiliriz.
