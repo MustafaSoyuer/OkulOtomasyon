@@ -102,9 +102,6 @@ public class EbeveynController {
      * GET isteklerinde bilgi eklemesi yapılırken, header içinde birden fazla bilgi taşıyabiliriz.
      * Bu bilgileri eklemek için ifadeler arasına & işareti eklenir
      * http://localhost:8080/ebeveyn/get-all-by-adres-and-ad?adres=a&ad=a
-     * @param adres
-     * @param ad
-     * @return
      */
     @GetMapping("/get-all-by-adres-and-ad")
     public List<Ebeveyn> findAllByAdresAndAd(String adres, String ad){

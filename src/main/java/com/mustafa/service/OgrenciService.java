@@ -14,6 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor // constuctor yazmak yerine
 public class OgrenciService {
     /**
+     *  TODO: DİKKAT!!! IDEMPOTENT DESING PATTERN
+     *  idempotent terimi; bir işlemin aynıyla tekrar tekrar uygulansa dahi, sonuclarının ve sunucu tarafındaki
+     *  işlemlerinin değişmesi durumudur. Idempotent bir işlemi tekrar tekrar uygulama sonucu değiştirmemelidir.
+     *  Uygulamalarımızda, tutarlılık ve ön görülebilirlik için kullanılır.
+     *
+     *  HTTP isteklerinde Idempotent olanlar:
+     *  GET, PUT, DELETE
+     *
+     *  Idempotent sistememizde olusabilecek hatalrla basacıkmada yardımcı olabilecek bir tasarım prensibidir.
+     *
+     *
+     */
+    /**
      *      Bir bağımlılığın Enjekte edilmesi için temelde kullandığımız 2 yöntem vardır.
      *      1- @Autowired ile işaretlemek
      *      2- ConstructorInjection ile spring application context in DI ile bağımlılık enjeksiyonu yapmak
@@ -45,6 +58,23 @@ public class OgrenciService {
 
     public List<Ogrenci> findAll(){
         return ogrenciRepository.findAll();
+    }
+
+    public List<Ogrenci> findAllByAd(String ad){
+        return ogrenciRepository.findAllByAd(ad);
+    }
+
+
+    public List<Ogrenci> findAllByAdLike(String ad) {
+        return ogrenciRepository.findAllByAdLike(ad);
+    }
+
+    public List<Ogrenci> findAllByAdStartingWith(String ad) {
+        return ogrenciRepository.findAllByAdStartingWith(ad);
+    }
+
+    public List<Ogrenci> findAllByAdStartingWithAndSoyadStartingWith(String ad,String soyad){
+        return ogrenciRepository.findAllByAdStartingWithAndSoyadStartingWith(ad,soyad);
     }
 
 

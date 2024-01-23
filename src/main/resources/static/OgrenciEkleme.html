@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ogrenci Ekleme</title>
+</head>
+<body>
+    <form action="http://localhost:8080/ogrenci/save" method="post">
+        <div>
+            <label for="ad">Ad.....: </label>
+            <input type="text" id="ad" name="ad"/>
+        </div>
+        <div>
+            <label for="yas">Yas.....: </label>
+            <input type="text" id="yas" name="yas"/>
+        </div>
+        <div>
+            <label for="soyad">Soyad.....: </label>
+            <input type="text" id="soyad" name="soyad"/>
+        </div>
+        <div>
+            <label for="cinsiyet">Cinsiyet..: </label>
+            <select name="cinsiyet" id="cinsiyet">
+                <option value="ERKEK">Erkek</option>
+                <option value="KADIN">Kadın</option>
+                <option value="BELIRTMEK_ISTEMIYOR">Belirtmek Istemiyor</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Kaydet" />
+        </div>
+    </form>
+<script>
+    function ekle(){
+        fetch(http://localhost:9090/ogrenci/)
+    }
+</script>
+</body>
+</html>

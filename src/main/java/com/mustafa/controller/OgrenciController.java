@@ -27,6 +27,7 @@ public class OgrenciController {
      */
     @PostMapping("/save")
     public void save(String ad, String soyad, Integer yas, Cinsiyet cinsiyet){
+        System.out.println();
         Ogrenci ogrenci = Ogrenci.builder()
                 .ad(ad)
                 .soyad(soyad)
@@ -38,7 +39,31 @@ public class OgrenciController {
 
     @GetMapping("/get-all")
     public List<Ogrenci> getAll(){
+        System.out.println();
         return ogrenciService.findAll();
     }
+
+    @GetMapping("/get-all-by-ad")
+    public List<Ogrenci> gelAllByAd(String ad){
+        return ogrenciService.findAllByAd(ad);
+    }
+
+    @GetMapping("/get-all-by-ad-like")
+    public List<Ogrenci> getAllByAdLike(String ad){
+        return ogrenciService.findAllByAdLike("%"+ad+"%");
+    }
+
+    @GetMapping("/get-all-by-ad-starting-with")
+    public List<Ogrenci> getAllByAdStartingWith(String ad){
+        return ogrenciService.findAllByAdStartingWith(ad);
+    }
+
+    @GetMapping("/get-all-by-ad-soyad-starting-with")
+    public List<Ogrenci> getAllByAdAndSoyadStartingWith(String ad, String soyad){
+        return ogrenciService.findAllByAdStartingWithAndSoyadStartingWith(ad,soyad);
+    }
+
+
+
 
 }
